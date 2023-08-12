@@ -5,11 +5,18 @@ const app = express();
 
 app.use('/user', userRouter);
 
-
-app.get('/', (req, res)=>{
-    res.send("This is Home Page");
+ //Sent HTML file
+ app.use('/home', (req, res)=>{
+    res.statusCode = 202;
+    res.sendFile(__dirname+"/views/index.html");
     res.end();
  });
+  app.use('/about', (req, res)=>{
+    res.statusCode = 202;
+    res.sendFile(__dirname+"/views/about.html");
+    // res.end();
+ });
+
 
  app.use((req, res)=>{
     res.send("404! Page not Found!");
