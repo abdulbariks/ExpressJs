@@ -1,17 +1,19 @@
-const express = require('express');
+const express = require("express");
+const userRouter = require("./routes/user.route");
 const app = express();
 
 
+app.use('/user', userRouter);
+
+
 app.get('/', (req, res)=>{
-    res.send("Hello World!");
-    res.end();
- });
- 
- app.post('/h', (req, res)=>{
-    res.send("You just called the post method at '/hello'!\n");
+    res.send("This is Home Page");
     res.end();
  });
 
-
+ app.use((req, res)=>{
+    res.send("404! Page not Found!");
+    res.end();
+ });
 
 module.exports = app;
