@@ -17,6 +17,32 @@ app.use('/user', userRouter);
     // res.end();
  });
 
+ //query parameter
+app.get('/query', (req, res)=>{
+      // const id = req.query.id;
+      // const name = req.query.name;
+      const {id, name} = req.query;
+      res.send(`id = ${id} name= ${name}`);
+
+})
+
+//route parameter
+app.get('/id/:id/name/:name', (req, res)=>{
+   //  const id = req.params.id;
+   //  const name = req.params.name;
+   const {id, name} = req.params;
+   res.send(`id = ${id} name= ${name}`);
+
+})
+
+//Header Parameter
+app.get('/header', (req, res)=>{
+    const id = req.header("id")
+    const name = req.header("name")
+   res.send(`id = ${id} name= ${name}`);
+
+})
+
 
  app.use((req, res)=>{
     res.send("404! Page not Found!");
