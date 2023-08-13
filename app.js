@@ -3,6 +3,25 @@ const userRouter = require("./routes/user.route");
 const app = express();
 
 
+//start recive data from html file using body parser 
+const bodyParser = require('body-parser');
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+// parse application/json
+app.use(bodyParser.json());
+
+app.get('/register',(req, res)=>{
+   res.sendFile(__dirname + "/index.html");
+});
+
+app.post('/register', (req, res)=>{
+   const fullName = req.body.fullName;
+   const age = req.body.age;
+   res.send(`<h1>Name is : ${fullName}, Age is ${age}</h1>`);
+});
+
+//end recive data from html file using body parser 
+
 app.use('/user', userRouter);
 
  //Sent HTML file
