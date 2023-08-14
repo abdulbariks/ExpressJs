@@ -9,29 +9,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.get('/triangle',(req, res)=>{
-   res.sendFile(__dirname + "/triangle.html");
+app.get('/fahrenheit',(req, res)=>{
+   res.sendFile(__dirname + "/fahrenheit.html");
 });
 
-app.post('/triangle', (req, res)=>{
-   const base = req.body.base;
-   const height = req.body.height;
-   const triangle = (base*height)/2;
-   res.send(`The Area of the Triangle is ${triangle}`);
+app.post('/fahrenheit', (req, res)=>{
+   const celsius = req.body.celsius;
+   const fahrenheit = celsius*9/5+32;
+   res.send(`${celsius} Celsius =  ${fahrenheit} Fehrenheit`);
 });
 
 
-app.get('/circle',(req, res)=>{
-    res.sendFile(__dirname + "/circle.html");
+app.get('/celsius',(req, res)=>{
+    res.sendFile(__dirname + "/celsius.html");
  });
  
- app.post('/circle', (req, res)=>{
-    const radius = req.body.radius;
-    // const pi = 3.1416;
-    const pi = Math.PI;
-    const circle  = (pi*radius*radius);
+ app.post('/celsius', (req, res)=>{
+    const fahrenheit = req.body.fahrenheit;
+    const celsius = 5/9*(fahrenheit-32);
     
-    res.send(`The Area of the circle  is ${circle}`);
+    res.send(`${fahrenheit} Fehrenheit =  ${celsius} Celsisus`);
  });
 app.listen(port, () => {
   console.log(`Server is Rumming:http://localhost:${port}`);
